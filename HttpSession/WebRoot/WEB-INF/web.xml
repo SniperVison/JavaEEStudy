@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<!--session的配置信息  -->
+	<session-config>
+		<!-- 设置session的有效时间，单位是分钟 -->
+		<session-timeout>10</session-timeout>
+	</session-config>
+
+	<display-name>HttpSession</display-name>
+	<servlet>
+		<servlet-name>httpSessionDemo1</servlet-name>
+		<servlet-class>com.vison.httpSession.httpSessionDemo1</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>httpSessionDemo2</servlet-name>
+		<servlet-class>com.vison.httpSession.httpSessionDemo2</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ShowAllBookServlet</servlet-name>
+		<servlet-class>com.vison.cart.ShowAllBookServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AddCart</servlet-name>
+		<servlet-class>com.vison.cart.AddCart</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ShowCart</servlet-name>
+		<servlet-class>com.vison.cart.ShowCart</servlet-class>
+	</servlet>
+  <servlet>
+    <servlet-name>CodeServlet</servlet-name>
+    <servlet-class>com.vison.servlet.CodeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DoLogin</servlet-name>
+    <servlet-class>com.vison.servlet.DoLogin</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+	<servlet-mapping>
+		<servlet-name>httpSessionDemo1</servlet-name>
+		<url-pattern>/httpSessionDemo1</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>httpSessionDemo2</servlet-name>
+		<url-pattern>/httpSessionDemo2</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ShowAllBookServlet</servlet-name>
+		<url-pattern>/showAllBookServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddCart</servlet-name>
+		<url-pattern>/addCart</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ShowCart</servlet-name>
+		<url-pattern>/showCart</url-pattern>
+	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CodeServlet</servlet-name>
+    <url-pattern>/codeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DoLogin</servlet-name>
+    <url-pattern>/doLogin</url-pattern>
+  </servlet-mapping>
+
+</web-app>
