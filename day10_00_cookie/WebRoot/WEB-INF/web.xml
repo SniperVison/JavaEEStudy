@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <display-name></display-name>
+  <servlet>
+    <servlet-name>CookieDemo1</servlet-name>
+    <servlet-class>com.itheima.demo.CookieDemo1</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CookieDemo2</servlet-name>
+    <servlet-class>com.itheima.demo.CookieDemo2</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ClearServlet</servlet-name>
+    <servlet-class>com.itheima.demo.ClearServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.itheima.login.LoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DoLoginServlet</servlet-name>
+    <servlet-class>com.itheima.login.DoLoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ShowAllBooksServlet</servlet-name>
+    <servlet-class>com.itheima.history.ShowAllBooksServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ShowBookDetail</servlet-name>
+    <servlet-class>com.itheima.history.ShowBookDetail</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+  <servlet-mapping>
+    <servlet-name>CookieDemo1</servlet-name>
+    <url-pattern>/servlet/ck1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CookieDemo2</servlet-name>
+    <url-pattern>/servlet/ck2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ClearServlet</servlet-name>
+    <url-pattern>/servlet/clear</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/servlet/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DoLoginServlet</servlet-name>
+    <url-pattern>/servlet/doLogin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowAllBooksServlet</servlet-name>
+    <url-pattern>/servlet/showAllBook</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowBookDetail</servlet-name>
+    <url-pattern>/servlet/showBookDetail</url-pattern>
+  </servlet-mapping>	
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
