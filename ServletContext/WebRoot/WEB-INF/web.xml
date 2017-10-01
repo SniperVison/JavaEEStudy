@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>ServletContext</display-name>
+	<!--配置 信息 -->
+	<context-param>
+		<param-name>encoding</param-name>
+		<param-value>UTF-8</param-value>
+	</context-param>
+
+
+	<servlet>
+		<servlet-name>servletDemo1</servlet-name>
+		<servlet-class>com.vison.ServletContext.ServletDemo1</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>servletDemo2</servlet-name>
+		<servlet-class>com.vison.ServletContext.ServletDemo2</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ServletDemo3</servlet-name>
+		<servlet-class>com.vison.ServletContext.ServletDemo3</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ServletDemo4</servlet-name>
+		<servlet-class>com.vison.ServletContext.ServletDemo4</servlet-class>
+	</servlet>
+  <servlet>
+    <servlet-name>ServletDemo5</servlet-name>
+    <servlet-class>com.vison.ServletContext.ServletDemo5</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ServletDemo6</servlet-name>
+    <servlet-class>com.vison.ServletContext.ServletDemo6</servlet-class>
+  </servlet>
+
+
+
+
+
+	<servlet-mapping>
+		<servlet-name>servletDemo1</servlet-name>
+		<url-pattern>/Demo1</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>servletDemo2</servlet-name>
+		<url-pattern>/Demo2</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ServletDemo3</servlet-name>
+		<url-pattern>/Demo3</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ServletDemo4</servlet-name>
+		<url-pattern>/Demo4</url-pattern>
+	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ServletDemo5</servlet-name>
+    <url-pattern>/Demo5</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ServletDemo6</servlet-name>
+    <url-pattern>/Demo6</url-pattern>
+  </servlet-mapping>
+</web-app>
