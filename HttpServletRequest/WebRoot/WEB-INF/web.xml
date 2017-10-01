@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>HttpServletRequest</display-name>
+  <servlet>
+    <servlet-name>HttpServletRequestDemo1</servlet-name>
+    <servlet-class>com.vison.HttpServletRequest.HttpServletRequestDemo1</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>HttpServletRequestDemo2</servlet-name>
+    <servlet-class>com.vison.HttpServletRequest.HttpServletRequestDemo2</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>HttpServletRequestDemo3</servlet-name>
+    <servlet-class>com.vison.HttpServletRequest.HttpServletRequestDemo3</servlet-class>
+  </servlet>
+  <
+
+
+
+
+  <servlet-mapping>
+    <servlet-name>HttpServletRequestDemo1</servlet-name>
+    <url-pattern>/demo1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>HttpServletRequestDemo2</servlet-name>
+    <url-pattern>/demo2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>HttpServletRequestDemo3</servlet-name>
+    <url-pattern>/demo3</url-pattern>
+  </servlet-mapping>
+  
+</web-app>

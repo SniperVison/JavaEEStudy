@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="/HttpServletRequest/demo3" method="post">
+		<!-- 此处的方法用get方式必须在Java文件中选doGet方法获取，doPost同理，不然不可行，但是视频上是可行的(是因为在doPost方法中有传递doGet方法进去，所以在视频上是可行，我自己也实现了) -->
+		用户名:<input type="text" name="userName" /> </br> 
+		密码:&nbsp;&nbsp;&nbsp; 
+		<input type="password" name="pwd" /></br> 
+		性别:&nbsp;&nbsp;&nbsp;
+		 <input type="radio" name="sex" value="男" checked="checked" />男 
+		 <input type="radio" name="sex" value="女" />女 </br> 
+		 爱好:&nbsp;&nbsp;&nbsp; 
+		 <input type="checkbox" name="hobby"value="篮球" />篮球
+		 <input type="checkbox" name="hobby" value="编程" />编程
+		 <input type="checkbox"name="hobby" value="唱歌" />唱歌 
+		 <input type="checkbox" name="hobby" value="足球" />足球 
+		 <input type="checkbox" name="hobby" value="写作" />写作 </br> 
+		 所在城市: 
+		 <select name="city">
+			<option>---------请选择-----------</option>
+			<option value="bj">北京</option>
+			<option value="sh">上海</option>
+			<option value="gz">广州</option>
+			<option value="sz">深圳</option>
+			<option value="wh">武汉</option>
+			<option value="hz">杭州</option>
+			<option value="nj">南京</option>
+			<option value="cs">长沙</option>
+		</select></br> <input type="submit" value="注册" />
+		<!-- <input type="submit" value="登录"/> -->
+	</form>
+</body>
+</html>
