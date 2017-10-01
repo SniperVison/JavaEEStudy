@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>HttpServletResponse</display-name>
+	<servlet>
+		<servlet-name>HttpServletResponseDemo1</servlet-name>
+		<servlet-class>com.vison.HttpServletResponse.HttpServletResponseDemo1</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>HttpServletResponseDemo2</servlet-name>
+		<servlet-class>com.vison.HttpServletResponse.HttpServletResponseDemo2</servlet-class>
+	</servlet>
+  <servlet>
+    <servlet-name>HttpServletResponseDemo3</servlet-name>
+    <servlet-class>com.vison.HttpServletResponse.HttpServletResponseDemo3</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>HttpServletResponseDemo4</servlet-name>
+    <servlet-class>com.vison.HttpServletResponse.HttpServletResponseDemo4</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>HttpServletResponseDemo5</servlet-name>
+    <servlet-class>com.vison.HttpServletResponse.HttpServletResponseDemo5</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>HttpServletResponseDemo6</servlet-name>
+    <servlet-class>com.vison.HttpServletResponse.HttpServletResponseDemo6</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>HttpServletResponseDemo7</servlet-name>
+    <servlet-class>com.vison.HttpServletResponse.HttpServletResponseDemo7</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+	<servlet-mapping>
+		<servlet-name>HttpServletResponseDemo1</servlet-name>
+		<url-pattern>/demo1</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>HttpServletResponseDemo2</servlet-name>
+		<url-pattern>/demo2</url-pattern>
+	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>HttpServletResponseDemo3</servlet-name>
+    <url-pattern>/demo3</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>HttpServletResponseDemo4</servlet-name>
+    <url-pattern>/demo4</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>HttpServletResponseDemo5</servlet-name>
+    <url-pattern>/demo5</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>HttpServletResponseDemo6</servlet-name>
+    <url-pattern>/demo6</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>HttpServletResponseDemo7</servlet-name>
+    <url-pattern>/demo7</url-pattern>
+  </servlet-mapping>
+
+</web-app>
