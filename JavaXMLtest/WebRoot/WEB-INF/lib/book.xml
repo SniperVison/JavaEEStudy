@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vison>
+	<book>
+		<name>thinking in java</name>
+		<price>67</price>
+	</book>
+	<book>
+		<name>effective java</name>
+		<price>58&gt;30</price>
+	</book>
+	<servlet>
+		<servlet-name>dl</servlet-name>
+		<servlet-class>com.vison.demo.DoLogin</servlet-class>
+	</servlet>
+</vison>
