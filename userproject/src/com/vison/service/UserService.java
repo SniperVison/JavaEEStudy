@@ -1,6 +1,7 @@
 package com.vison.service;
 
 import com.vison.domain.User;
+import com.vison.exception.UserExistException;
 import com.vison.exception.UsersException;
 
 public interface UserService
@@ -22,4 +23,12 @@ public interface UserService
 	 * @throws Exception
 	 */
 	public User login(User user) throws UsersException;
+
+	/**
+	 * 根据用户查找用户是否存在
+	 * 
+	 * @return
+	 * @throws UserExistException
+	 */
+	public boolean findUserByName(String name) throws UserExistException;
 }

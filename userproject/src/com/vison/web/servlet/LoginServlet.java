@@ -48,13 +48,14 @@ public final class LoginServlet extends HttpServlet
 				request.getRequestDispatcher("/index.jsp").forward(request, response);
 			} else
 			{
-				// response.getWriter().write("ÕË»§»òÃÜÂë´íÎó");
 				response.sendRedirect(request.getContextPath() + "/login.jsp");
 			}
 
 		} catch (UsersException e)
 		{
+			// System.out.println("ÕË»§»òÃÜÂë´íÎó£¡");
 			e.printStackTrace();
+			;
 			// µÇÂ¼Ê§°ÜÌø»Øµ½µÇÂ¼Ò³Ãæ
 			// request.setAttribute("msg", e.getMessage());
 			// request.getRequestDispatcher("/login.jsp").forward(request,

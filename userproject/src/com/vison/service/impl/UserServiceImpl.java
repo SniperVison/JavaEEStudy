@@ -3,6 +3,7 @@ package com.vison.service.impl;
 import com.vison.dao.UserDao;
 import com.vison.dao.impl.UserDaoImpl;
 import com.vison.domain.User;
+import com.vison.exception.UserExistException;
 import com.vison.exception.UsersException;
 import com.vison.service.UserService;
 
@@ -31,6 +32,14 @@ public class UserServiceImpl implements UserService
 			e.printStackTrace();
 		}
 		return u;
+	}
+
+	public boolean findUserByName(String name) throws UserExistException
+	{
+		boolean isUserExist = userDao.findUserByName(name);
+		if (isUserExist)
+			throw new UserExistException("用户名已存在");
+		return isUserExist;
 	}
 
 }

@@ -20,4 +20,13 @@ public interface UserDao
 	 * @throws Exception
 	 */
 	public User findUser(User user) throws Exception;
+
+	/**
+	 * 根据用户名查找用户是否存在
+	 * 
+	 * @param
+	 * @return
+	 */
+	public boolean findUserByName(String name);
+
 }
