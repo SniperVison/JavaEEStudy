@@ -6,13 +6,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath }/registerServlet" method="post">
-		账户:<input type="text" name="username"><br /> 
-		密码:<input type="password" name="password"><br />
-		确认密码:<input type="password" name="repassword"><br />
-		邮箱:<input type="text" name="email"><br /> 
-		生日:<input type="text"  name="birthday"> <br />
-		<input type="submit" value="注册">
-	</form>
+<form action="${pageContext.request.contextPath }/registerServlet" method="post">
+       账户:<input type="text" name="username"><br>
+      密码:<input type="password" name="password"><br>
+      确认密码:<input type="password" name="repassword"><br>
+      邮箱:<input type="text" name="email"><br>
+      出生日期:<input type="text" name="birthday"><br>
+   <input type="submit" value="注册">
+</form>
+
 </body>
 </html>

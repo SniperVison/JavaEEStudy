@@ -3,7 +3,7 @@ package com.vison.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-//用户类信息都要实现序列化，避免内存溢出或者服务器重启的时候，数据丢失
+//用户数据实现序列化接口是为了避免内存溢出或者服务器宕机的时候，用户信息丢失
 public class User implements Serializable
 {
 	private int id;

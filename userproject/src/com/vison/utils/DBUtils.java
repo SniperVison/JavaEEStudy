@@ -2,23 +2,21 @@ package com.vison.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class DBUtils
 {
-	public static String driverClass;
-	public static String url;
-	public static String username;
-	public static String password;
-
+	private static String driverClass;
+	private static String url;
+	private static String username;
+	private static String password;
 	static
 	{
-		// 此对象用于加载properties文件数据
 		ResourceBundle rb = ResourceBundle.getBundle("dbinfo");
-		driverClass = rb.getString("diverClass");
+		driverClass = rb.getString("driverClass");
 		url = rb.getString("url");
 		username = rb.getString("username");
 		password = rb.getString("password");
@@ -29,17 +27,14 @@ public class DBUtils
 		{
 			e.printStackTrace();
 		}
-
 	}
 
-	// 得到连接的方法
 	public static Connection getConnection() throws Exception
 	{
 		return DriverManager.getConnection(url, username, password);
 	}
 
-	// 关闭资源的方法
-	public static void closeAll(ResultSet rs, Statement stmt, Connection conn)
+	public static void closeAll(ResultSet rs, PreparedStatement psmt, Connection conn)
 	{
 		if (rs != null)
 		{
@@ -52,16 +47,16 @@ public class DBUtils
 			}
 			rs = null;
 		}
-		if (stmt != null)
+		if (psmt != null)
 		{
 			try
 			{
-				stmt.close();
+				psmt.close();
 			} catch (SQLException e)
 			{
 				e.printStackTrace();
 			}
-			stmt = null;
+			psmt = null;
 		}
 		if (conn != null)
 		{
@@ -73,7 +68,6 @@ public class DBUtils
 				e.printStackTrace();
 			}
 			conn = null;
-
 		}
 	}
 }
