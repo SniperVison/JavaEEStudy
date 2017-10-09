@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>bookManager</display-name>
+  <servlet>
+    <servlet-name>BookListServlet</servlet-name>
+    <servlet-class>com.vison.web.servlet.BookListServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddBookServlet</servlet-name>
+    <servlet-class>com.vison.web.servlet.AddBookServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FindBookByIdServlet</servlet-name>
+    <servlet-class>com.vison.web.servlet.FindBookByIdServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UpdateBookServlet</servlet-name>
+    <servlet-class>com.vison.web.servlet.UpdateBookServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteBookServlet</servlet-name>
+    <servlet-class>com.vison.web.servlet.DeleteBookServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteAllBooksServlet</servlet-name>
+    <servlet-class>com.vison.web.servlet.DeleteAllBooksServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SearchBooksServlet</servlet-name>
+    <servlet-class>com.vison.web.servlet.SearchBooksServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>PageServlet</servlet-name>
+    <servlet-class>com.vison.web.servlet.PageServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>FindBookInfoServlet</servlet-name>
+    <servlet-class>com.vison.web.servlet.FindBookInfoServlet</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
+
+  <servlet-mapping>
+    <servlet-name>BookListServlet</servlet-name>
+    <url-pattern>/bookListServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddBookServlet</servlet-name>
+    <url-pattern>/addBookServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FindBookByIdServlet</servlet-name>
+    <url-pattern>/findBookByIdServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateBookServlet</servlet-name>
+    <url-pattern>/updateBookServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteBookServlet</servlet-name>
+    <url-pattern>/deleteBookServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteAllBooksServlet</servlet-name>
+    <url-pattern>/deleteAllBooksServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SearchBooksServlet</servlet-name>
+    <url-pattern>/searchBooksServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PageServlet</servlet-name>
+    <url-pattern>/pageServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FindBookInfoServlet</servlet-name>
+    <url-pattern>/findBookInfoServlet</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
