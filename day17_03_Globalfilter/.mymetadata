@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="day17_03_Globalfilter"
+  id="myeclipse.1445073887830"
+  context-root="/day17_03_Globalfilter"
+  j2ee-spec="5.0"
+  archive="day17_03_Globalfilter.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
