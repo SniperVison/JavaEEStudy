@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.vison.domain.User;
 import com.vison.service.UserService;
+import com.vison.util.MD5Util;
 
 public class LoginServlet extends HttpServlet
 {
@@ -20,7 +21,9 @@ public class LoginServlet extends HttpServlet
 		response.setContentType("text/html;charset=UTF-8");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-
+		// 使用md5加密算法加密密码
+		password = MD5Util.md5(password);
+		System.out.println(password);
 		UserService us = new UserService();
 		User user = us.findUser(username, password);
 		if (user != null)
