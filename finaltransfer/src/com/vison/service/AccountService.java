@@ -12,6 +12,6 @@ public interface AccountService
 	 * @param money
 	 *            в╙ук╫П╤Н
 	 */
-	public void transfer(String fromName, String toName, double money);
+	public void transfer(String fromName, String toName, double money) throws Exception;
 
 }
