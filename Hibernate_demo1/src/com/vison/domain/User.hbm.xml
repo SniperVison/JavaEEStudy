@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!--在包com.vison.domain下 新建一个配置文件User.hbm.xml， 用于映射User类对应数据库中的t_user表 注: 文件名 User.hbm.xml U一定要大写，要和类保持一致 -->
+	<class name="com.vison.domain.User" table="t_user">
+		<!--表示属性id,映射表里的字段id -->
+		<id name="id" column="id">
+			<!--<generator class="native"> 意味着id的自增长方式采用数据库的本地方式 -->
+			<generator class="native"></generator>
+		</id>
+		<property name="name" column="name"></property>
+		<property name="password" column="password"></property>
+
+	</class>
+
+</hibernate-mapping>
