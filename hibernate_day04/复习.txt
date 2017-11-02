@@ -1,0 +1,47 @@
+多表关系
+
+一对多/多对一
+	O 对象			一的一方使用集合. 多的一方直接引用一的一方.
+	R 关系型数据库	多的一方使用外键引用一的一方主键.
+	M 映射文件		一: <set name="">
+							<key column="" />
+							<one-to-many class="" />
+						</set>
+					多: <many-to-one name="" column="" class="" />
+	
+	操作: 操作管理级别属性. 
+	
+		cascade: 级联操作	
+			减少我们书写的操作代码.
+			none(默认值)	不级联
+			save-update:	级联保存
+			delete:			级联删除
+			all:			级联保存+级联删除
+		结论: 可以使用save-update.不推荐使用delete. 也可以不用cascade.
+		inverse: 反转关系维护
+			属于性能优化.关系的两端如果都书写了关系.那么两方都会发送维护关系的语句.
+			这样,语句就发生重复.我们可以使用inverse使一的一方放弃维护关系.
+			true			放弃
+			false(默认值)	维护
+		结论: 在一对多中,一的一方可以放弃维护关系.
+			
+
+
+多对多
+	O 对象			两方都使用集合. 
+	R 关系型数据库	使用中间表.至少两列.作为外键引用两张表的主键.
+	M 映射文件		多: <set name="" table="中间表名" >
+							<key column="别人引用我" />
+							<man-to-many class="" column="我引用别人的" />
+						</set>
+						
+	操作:操作管理级别属性. 
+		cascade: 级联操作	
+			减少我们书写的操作代码.
+			none(默认值)	不级联
+			save-update:	级联保存
+			delete:			级联删除
+			all:			级联保存+级联删除
+		结论: 可以使用save-update.不推荐使用delete. 也可以不用cascade.
+		inverse: 反转关系维护
+			属于性能优化.必须选择一方放弃维护主键关系.哪方放弃要看业务方向.

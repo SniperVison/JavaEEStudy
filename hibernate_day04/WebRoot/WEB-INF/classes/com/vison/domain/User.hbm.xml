@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.vison.domain.User" table="sys_user">
+		<id name="user_id" column="user_id">
+			<generator class="native"></generator>
+		</id>
+		<property name="user_code" column="user_code"></property>
+		<property name="user_name" column="user_name"></property>
+		<property name="user_password" column="user_password"></property>
+		<property name="user_state" column="user_state"></property>
+	
+	
+	
+		<!--多对多关系  -->
+		<!-- 
+		name:集合属性名
+		table：配置中间表名
+		key
+          column:外键，别人引用“我”的外键
+          class:我与哪个类是多对多关系
+          column:外键，我引用别人的外键列名		
+		  -->
+		  <!--inverse属性：
+		  true：放弃维护外键关系  
+	
+		  -->
+		  
+		  <!--cascade 级联操作：
+		  save-update:级联保存更新
+		  delete:级联删除，不推荐使用，危险操作，尤其在多对多关系中
+		  all:save-update+delete，也不推荐使用，同上
+		  结论：cascade简化代码书写，该属性实际意义不大，建议都不用
+		  
+		  
+		  增加级联操作，省去实现持久化的代码  -->
+		<set name="roles" table="sys_user_role" cascade="save-update" >
+			<key column="user_id"></key>
+			<many-to-many class="com.vison.domain.Role" column="role_id"></many-to-many>
+		</set>
+
+	</class>
+</hibernate-mapping>

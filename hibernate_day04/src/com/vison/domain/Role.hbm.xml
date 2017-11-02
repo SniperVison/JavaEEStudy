@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.vison.domain.Role" table="sys_role">
+		<id name="role_id" column="role_id">
+			<generator class="native"></generator>
+		</id>
+		<property name="role_name" column="role_name"></property>
+		<property name="role_memo" column="role_memo"></property>
+		<!--多对多关系  -->
+		<!-- 
+		name:集合属性名
+		table：配置中间表名
+		key
+          column:外键，别人引用“我”的外键
+          class:我与哪个类是多对多关系
+          column:外键，我引用别人的外键列名		
+          
+          	  
+		  结论：将来在开发中，如果遇到多对多关系，一定要选择一方放弃维护关系，
+		  一般谁来放弃要看业务方向，例如录入员工时，需要为员工制定所述角色，
+		  那么业务方向就是员工维护角色，角色不需要维护与员工的关系，角色放弃维护
+		  
+		  -->
+		<set name="users" table="sys_user_role" inverse="true">
+			<key column="role_id"></key>
+			<many-to-many class="com.vison.domain.User" column="user_id"></many-to-many>
+		</set>
+
+
+
+	</class>
+
+
+
+
+
+
+</hibernate-mapping>
