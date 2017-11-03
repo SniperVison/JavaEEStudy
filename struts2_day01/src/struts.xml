@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+<!--修改struts2常量配置（方式先后也是加载顺序）
+
+修改struts2常量配置的方式有三种-->
+		<!--修改struts2常量配置的第一种方式：在src目录下创建struts.properties文件并且添加相对应的键值对，即例如struts.i18n.encoding=UTF-8  -->
+		
+		<!--这是修改struts2常量配置的第三宗方式：在web.xml文件中添加context-param属性  -->
+		
+		<!-- 修改struts2常量配置的第二种方式（重点，推荐使用）：在src/struts.xml文件中添加constant属性  -->
+	
+	 <!--i18n：国际化 (internationalization,头+18（中间18个字母）+尾) ,解决post提交乱码-->
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	
+	<!--指定访问action时的后缀名（即xxx[.action]），两个逗号是为了分隔开两个参数，默认是两个空值,后缀名是可以修改的，不过除了默认的action后缀名可以省略，自定义的后缀名要自己在浏览器中加上  -->
+    <constant name="struts.action.extension" value="action,,"></constant>
+    
+    <!--指定struts2是否以开发模式运行,默认值是false 
+                       启用开发模式的好处：
+              1、热加载国际化（没有使用到）
+              2、热加载主配置（即struts.xml文件）,不需要重启服务器即可生效
+              3、提供更多的错误信息输出，方便开发时的调试
+     -->
+    <constant name="struts.devMode" value="true"></constant>
+
+
+
+<!--package:将Action配置封装，就是可以在Package中配置更多action，并不是web project下面的package
+    name属性：给包起个名字，起到标识作用，随便起，注意不能与其他包名重复
+    namespace属性：给action的访问路径中定义一个命名空间
+    extends属性：继承一个指定包,extends="struts-default"这个属性是必选的
+    abstract属性：包是否为抽象;标识性属性，标识该包不能独立运行，专门被继承，不常用
+  -->
+	<package name="hello" namespace="/hello" extends="struts-default">
+		<!--action元素：配置action类  
+		        name属性：决定了Action访问资源名
+		        class属性：action类的完整类名
+		        method属性：指定调用action中的哪一个方法处理请求
+		          -->
+		<action name="HelloAction" class="com.vison.hello.HelloAction"  method="hello">
+				<!--result元素：结果配置
+				       name属性：标识结果处理的名称。与action方法的返回值相对应
+				       type属性：指定调用哪一个result类来处理结果，默认使用转发（dispatcher）
+				                 标签体：填写页面的相对路径（即类似于下面的“/index.jsp”）
+				  -->
+			<result name="success" type="dispatcher">/index.jsp</result>
+		</action>
+
+	</package>
+
+<!--引入其他struts配置文件  -->
+<include file="com/vison/testdefault/struts.xml"></include>
+<include file="com/vison/dynamic/struts.xml"></include>
+</struts>

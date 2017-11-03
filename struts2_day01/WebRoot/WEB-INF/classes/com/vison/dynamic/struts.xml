@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+
+
+
+
+<struts>
+	
+	<!--配置动态方法调用是否开启常量 ，默认是关闭，需要开启 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>	
+	<package name="dynamic" namespace="/dynamic" extends="struts-default">
+		
+		<!--
+		HTTP Status 404 - Method add for action helloworld is not allowed!
+		搜了半天，有说是要添加 <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>，
+		
+		明确打开动态方法调用功能，因为 struts2 默认是关的，但在这里并不能解决问题，因为配置是正确的。
+     	原来是 struts2.5 为了增加安全性，在 struts.xml 添加了这么个属性：<global-allowed-methods>regex:.*</global-allowed-methods>
+		同时要注意，struts.xml 的解析版本要为 2.5，
+		  -->
+		<global-allowed-methods>regex:.*</global-allowed-methods><!--这个属性是在struts2.5版本为了增加安全性必须要加（不加不能运行），在2.3版本是不用加的  -->
+				<!-- 要访问的URL: http://localhost:8080/struts2_day01/dynamic/DynamicDemo1Action!xxx[.action] -->	
+				<!-- 	动态方法调用方式1:使用感叹号方式
+				<action name="DynamicDemo1Action" class="com.vison.dynamic.DynamicDemo1Action">-->
+				
+				<!-- 要访问的URL:http://localhost:8080/struts2_day01/dynamic/DynamicDemo1Action_xxx -->
+				<!--动态方法调用方式2：通配符方式
+				    使用{1}取出第一个星号通配的内容 -->	
+				 
+				<action name="DynamicDemo1Action_*" class="com.vison.dynamic.DynamicDemo1Action"  method="{1}">
+			<result name="success">/index.jsp</result>
+
+
+		</action>
+
+	</package>
+
+</struts>

@@ -1,0 +1,11 @@
+package com.vison.testdefault;
+
+//≤‚ ‘ƒ¨»œ≈‰÷√
+public class DemoAction
+{
+	public String execute()
+	{
+		System.out.println("DemoAction execute~~~~~~");
+		return "success";
+	}
+}
