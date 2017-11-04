@@ -60,4 +60,6 @@
 
 	<!--配置其他struts文件 -->
 	<include file="com/vison/api/struts.xml"></include>
-</struts>
+   <include file="com/vison/param/struts.xml"></include>
+   
+   </struts>
