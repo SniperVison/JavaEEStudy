@@ -8,15 +8,17 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
 import com.vison.domain.Customer;
 import com.vison.service.CustomerService;
 import com.vison.service.impl.CustomerServiceImpl;
 
 @SuppressWarnings("serial")
-public class CustomerAction extends ActionSupport
+public class CustomerAction extends ActionSupport implements ModelDriven<Customer>
 {
 
 	private CustomerService cs = new CustomerServiceImpl();
+	private Customer customer = new Customer();
 
 	public String list() throws Exception
 	{
@@ -34,6 +36,21 @@ public class CustomerAction extends ActionSupport
 		// 5--将返回的list放入request域，转发到list.jsp显示
 		ServletActionContext.getRequest().setAttribute("list", list);
 		return "list";
+	}
+
+	// 添加客户
+	public String add() throws Exception
+	{
+		// 1--调用Service
+		cs.save(customer);
+		// 2--重定向到列表action方法中
+		return "toList";
+	}
+
+	@Override
+	public Customer getModel()
+	{
+		return customer;
 	}
 
 }

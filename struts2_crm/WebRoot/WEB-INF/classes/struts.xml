@@ -28,6 +28,10 @@
 		<action name="CustomerAction_*" class="com.vison.web.action.CustomerAction"  method="{1}">
 			
 			<result name="list" >/jsp/customer/list.jsp</result>
+		    <result name="toList" type="redirectAction">
+				<param name="actionName">CustomerAction_list</param>
+				<param name="namespace">/</param>
+		    </result>
 		</action>
 
 	</package>
