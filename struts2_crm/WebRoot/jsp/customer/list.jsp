@@ -1,6 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="/struts-tags" prefix="s"%><!--导入struts的包  -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -89,6 +90,27 @@
 													<TD>手机</TD>
 													<TD>操作</TD>
 												</TR>
+												<!--方式一:使用struts标签遍历  -->
+												<%-- <s:iterator value="#list"><!--使用Ognl表达式,每次执行遍历都会将参数压入值栈的栈顶  -->
+												<TR
+													style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
+													     <!--方式一:EL表达式的用法  -->
+													<TD>${customer.cust_name }</TD>
+													     <!--方式二:使用struts的标签(property)和Ognl表达式，可以专业替代EL表达式的，效果一致  -->
+												    <TD><s:property value="cust_name"/></TD>
+													<TD>${customer.cust_level }</TD>
+													<TD>${customer.cust_source }</TD>
+													<TD>${customer.cust_linkman }</TD>
+													<TD>${customer.cust_phone }</TD>
+													<TD>${customer.cust_mobile }</TD>
+													<TD>
+													<a href="${pageContext.request.contextPath }/customerServlet?method=edit&custId=${customer.cust_id}">修改</a>
+													&nbsp;&nbsp;
+													<a href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
+													</TD>
+												</TR></s:iterator> --%>
+												
+												<!--方式二:使用JSTL标签遍历,效果同上  -->
 												<c:forEach items="${list }" var="customer">
 												<TR
 													style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
@@ -106,6 +128,24 @@
 												</TR>
 												
 												</c:forEach>
+												
+												<%-- <!--方式三:使用var属性和Ognl表达式 ,效果同上 -->
+												<s:iterator value="#list" var="cust"><!--每次遍历都会放进var属性值指定的ActionContext中  -->
+												<TR
+													style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
+													<TD><s:property value="#cust.cust_name"/> </TD>
+													<TD><s:property value="#cust.cust_level"/></TD>
+													<TD><s:property value="#cust.cust_source"/></TD>
+													<TD><s:property value="#cust.cust_linkman"/></TD>
+													<TD><s:property value="#cust.cust_phone"/></TD>
+													<TD><s:property value="#cust.cust_mobile"/></TD>
+													<TD>
+													<a href="${pageContext.request.contextPath }/customerServlet?method=edit&custId=${customer.cust_id}">修改</a>
+													&nbsp;&nbsp;
+													<a href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
+													</TD>
+												</TR>
+												</s:iterator> --%>
 
 											</TBODY>
 										</TABLE>

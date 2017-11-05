@@ -7,6 +7,7 @@ import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.vison.domain.Customer;
@@ -33,8 +34,12 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		}
 		// 4--调用Service将离线对象传递
 		List<Customer> list = cs.getAll(dc);
-		// 5--将返回的list放入request域，转发到list.jsp显示
-		ServletActionContext.getRequest().setAttribute("list", list);
+
+		// 方式一: 5--将返回的list放入request域，转发到list.jsp显示(这种方法是使用原生request),不推荐
+		// ServletActionContext.getRequest().setAttribute("list", list);
+
+		// 方式二:放到ActionContext中
+		ActionContext.getContext().put("list", list);
 		return "list";
 	}
 
