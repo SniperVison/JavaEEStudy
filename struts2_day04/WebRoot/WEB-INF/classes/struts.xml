@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+
+
+
+
+<struts>
+
+	<!--配置动态方法调用是否开启常量 ，默认是关闭，需要开启 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<package name="inter" namespace="/" extends="struts-default">
+       <!--标签的顺序一定要写对	-->																					
+       
+       <!--1-注册拦截器  -->
+       <interceptors>
+       <interceptor name="myInter3" class="com.vison.interceptor.MyInterceptor3"></interceptor>
+      
+       <!--2-注册拦截器栈  -->
+       		<interceptor-stack name="myStack">
+       		        <!--自定义拦截器引入(建议放在20个拦截器之前)  -->
+       		    <interceptor-ref name="myInter3">
+       		          <!--指定哪些方法不拦截  -->
+       		          <param name="excludeMethods">add,delete</param>
+       		           <!--指定哪些方法需要进行拦截  -->
+       		          <param name="includeMethods">find,update,execute</param>
+       		    </interceptor-ref>
+       			    <!--引用默认的拦截器栈(20个)  -->
+       			<interceptor-ref name="defaultStack"></interceptor-ref>
+       		</interceptor-stack>
+        </interceptors>
+       <!--3-指定包中的默认拦截器栈  -->
+       <default-interceptor-ref name="myStack"></default-interceptor-ref>
+     
+		<!-- HTTP Status 404 - Method add for action helloworld is not allowed! 
+			 struts2.5 为了增加安全性，在 struts.xml 添加了这么个属性：<global-allowed-methods>regex:.*</global-allowed-methods>
+			 同时要注意，struts.xml 的解析版本要为 2.5 -->
+		<global-allowed-methods>regex:.*</global-allowed-methods><!--这个属性是在struts2.5版本为了增加安全性必须要加（不加不能运行），在2.3版本是不用加的 -->
+		
+		
+		<action name="InterceptorDemo1Action_*" class="com.vison.interceptor.InterceptorDemo1Action" method="{1}">
+			
+			<!--为Action单独指定走哪个拦截器（栈）  -->
+			<!-- <interceptor-ref name="mystack"></interceptor-ref> -->
+			
+			<result name="success" type="dispatcher">/index.jsp</result>
+		</action>
+	</package>
+<include file="com/vison/tag/struts.xml"></include>
+</struts>

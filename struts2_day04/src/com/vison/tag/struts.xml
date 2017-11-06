@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+
+
+
+
+<struts>
+
+	<!--配置动态方法调用是否开启常量 ，默认是关闭，需要开启 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<package name="tag" namespace="/tag" extends="struts-default">
+    
+     
+		<!-- HTTP Status 404 - Method add for action helloworld is not allowed! 
+			 struts2.5 为了增加安全性，在 struts.xml 添加了这么个属性：<global-allowed-methods>regex:.*</global-allowed-methods>
+			 同时要注意，struts.xml 的解析版本要为 2.5 -->
+		<global-allowed-methods>regex:.*</global-allowed-methods><!--这个属性是在struts2.5版本为了增加安全性必须要加（不加不能运行），在2.3版本是不用加的 -->
+		
+		
+		<action name="TagAction1" class="com.vison.tag.TagAction1" >
+			<result name="success" type="dispatcher">/tag1.jsp</result>
+		</action>
+		
+		<action name="FormTagAction2" class="com.vison.tag.FormTagAction2" >
+			<result name="success" type="dispatcher">/tag2_form.jsp</result>
+		</action>
+		
+	
+		
+		
+	</package>
+
+</struts>
