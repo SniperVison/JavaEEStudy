@@ -1,4 +1,7 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/frameset.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib uri="/struts-tags" prefix="s" %>    
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/frameset.dtd">
 <HTML xmlns="http://www.w3.org/1999/xhtml">
 <HEAD>
 <META http-equiv=Content-Type content="text/html; charset=utf-8">
@@ -11,7 +14,16 @@ TD {
 }
 </STYLE>
 
-<META content="MSHTML 6.00.6000.16809" name=GENERATOR></HEAD>
+<META content="MSHTML 6.00.6000.16809" name=GENERATOR>
+<script type="text/javascript">
+//这里是解决两个页面合在一起的情况
+  window.onload=function(){
+     if(window.parent!=window)//判断是否在框架中
+         //如果是就让框架页面跳转到登录页面
+      window.parent.location.href="${pageContext.request.contextPath}/login.jsp";
+  }
+</script>
+</HEAD>
 <BODY>
 <FORM id=form1 name=form1   action="${pageContext.request.contextPath}/UserAction_login"method=post>
 
@@ -42,8 +54,8 @@ style="LEFT: 0px; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #0066ff"></DIV
               <TBODY>
               <TR>
                 <TD style="HEIGHT: 28px" width=80>登 录 名：</TD>
-                <TD style="HEIGHT: 28px" width=150><INPUT id=txtName 
-                  style="WIDTH: 130px" name=user_code></TD>
+                <TD style="HEIGHT: 28px" width=150>
+                <INPUT id=txtName  style="WIDTH: 130px" name=user_code></TD>
                 <TD style="HEIGHT: 28px" width=370><SPAN 
                   id=RequiredFieldValidator3 
                   style="FONT-WEIGHT: bold; VISIBILITY: hidden; COLOR: white">请输入登录名</SPAN></TD></TR>
@@ -59,7 +71,7 @@ style="LEFT: 0px; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #0066ff"></DIV
                   style="WIDTH: 130px" name=txtcode></TD>
                 <TD style="HEIGHT: 28px">&nbsp;</TD></TR>
               <TR>
-                <TD style="HEIGHT: 18px"></TD>
+                <TD style="HEIGHT: 18px" colspan="2"><font color="red"><s:property  value="exception.message"/></font></TD>
                 <TD style="HEIGHT: 18px"></TD>
                 <TD style="HEIGHT: 18px"></TD></TR>
               <TR>
@@ -73,4 +85,6 @@ style="LEFT: 0px; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #0066ff"></DIV
 border=0></TD></TR></TBODY></TABLE></DIV></DIV>
 
 
-</FORM></BODY></HTML>
+</FORM>
+<s:debug></s:debug>
+</BODY></HTML>

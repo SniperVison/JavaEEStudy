@@ -50,7 +50,7 @@
 	<!--配置映射关系的地址，识别User这个实体类,“/Hibernate_demo1/src/com/vison/domain/User.hbm.xml”只需要保留src后面的内容“com/vison/domain/User.hbm.xml”  -->
 	<mapping resource="com/vison/domain/Customer.hbm.xml" />
 	<mapping  resource="com/vison/domain/LinkMan.hbm.xml"/>	
-	<!-- <mapping resource="com/vison/domain/Role.hbm.xml"/>
-	<mapping resource="com/vison/domain/User.hbm.xml"/> -->
+	<!-- <mapping resource="com/vison/domain/Role.hbm.xml"/>-->
+	<mapping resource="com/vison/domain/User.hbm.xml"/> 
 	</session-factory>
 </hibernate-configuration>
