@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd ">
+
+<!--“xmlns:p="http://www.springframework.org/schema/p" ”这一句是p名称空间注入需要加上的  -->
+
+	<!--set方式注入: -->
+	<bean name="setinjection" class="com.vison.bean.User">
+		<!--值类型注入:为User对象中名为name的属性注入vison作为值 -->
+		<property name="name" value="vison"></property>
+		<property name="age" value="18"></property>
+
+		<!--引用类型注入:为car属性注入下方配置的 car对象 -->
+		<property name="car" ref="car"></property>
+	</bean>
+
+
+	<!--将car对象配置到容器中 -->
+	<bean name="car" class="com.vison.bean.Car">
+		<property name="name" value="布加迪威龙"></property>
+		<property name="color" value="黑色"></property>
+	</bean>
+
+
+	<!-- ===================================================================================== -->
+
+	<!--构造函数注入 -->
+<bean name="constructorInjection" class="com.vison.bean.User">
+<!--只要有name(构造函数的参数名) ,value(值),index(构造函数的参数索引，从0开始),type(构造函数的参数类型)四个值就能准确定位到具体哪一个构造函数  -->
+ <constructor-arg name="name"  index="0"  type="java.lang.String" value="jingjing"> </constructor-arg>
+ <constructor-arg name="car" ref="car" index="1" type="com.vison.bean.Car"></constructor-arg>
+</bean>
+
+
+	<!-- ===================================================================================================== -->
+
+<!--p名称空间注入  新型注入方式，但是由于上面两种使用太广泛了，所以这种使用频率不高-->
+	<!--步骤：
+	1-导入P名称空间   “xmlns:p="http://www.springframework.org/schema/p”
+	2-使用p:属性完成注入
+	   |-值类型:p:属性名="值"
+	   |-对象类型:p:属性名-ref="bean名称"
+	  -->
+	
+	<bean name="pNameZoneInjection" class="com.vison.bean.User" p:name="wenwen" p:age="20" p:car-ref="car"></bean>
+
+	<!-- =========================================================================================================== -->
+ 
+ <!--SPEL注入:spring Expression Language  spring表达式语言  -->
+	<bean name="SPELInjection" class="com.vison.bean.User" >
+	<!--与下面原理相似  -->
+	<property name="name" value="#{setinjection.name}"></property>
+	<!--这里的value值是指取上面name="constructorInjection" 的名字所代表的值 -->
+	<property name="age" value="#{constructorInjection.age}"></property>
+	
+	<!--引用注入类型不适用于SPEL表达式  -->
+	<property name="car" ref="car"></property>
+	</bean>
+	
+<!--	======================================================================================================================== -->
+	<!--复杂类型注入  -->
+	
+	<!--array注入  -->
+	<bean name="cb" class="com.vison.bean.CollectionBean">
+	<!--如果数组中只准备注入一个值（或者对象）,直接使用value/ref即可  -->
+	
+	<!--方式一:  -->
+	<!-- <property name="arr" value="tom"></property>
+	<property name="arr"></property> -->
+	<!--方式二:  -->
+	<!-- <property name="list" value="rose"></property> -->
+	
+	<!--数组有多个值（或者对象）  -->
+	<!--方式一:  -->
+	<!-- <property name="arr">
+	<array>
+		<value>vison</value>
+		<value>jingjing</value>
+		引用注入类型
+		<ref bean="SPELInjection" />
+	</array>
+</property>  -->
+
+ <!-- 	方式二: -->
+	<!--<property name="list">
+		<list>
+			<value>shenshen</value>
+			<value>wenwen</value>
+			引用注入类型
+			<ref bean="pNameZoneInjection" />
+		</list>
+	</property> -->
+	
+	
+	<!--************************************************************************************************  -->
+	<!--map类型注入 -->
+	<property name="map">
+		<map>
+			<entry key="url" value="jdbc.mysql:///crm"></entry><!--键值都是字符串 -->
+			<entry key="SPELInjectionDemo" value-ref="SPELInjection"></entry><!--键为字符串，值为对象 -->
+			<entry key-ref="pNameZoneInjection" value-ref="constructorInjection"></entry><!--键值都是对象 -->
+		</map>
+	</property>
+	
+	
+		<!--************************************************************************************************  -->
+	<!--properties类型注入  -->
+	<property name="prop">
+	<props>
+		<prop key="driverClass">com.jdbc.mysql.Driver</prop>
+		<prop key="userName">root</prop>
+		<prop key="password">root</prop>
+	</props>
+
+</property>
+	
+	</bean>
+
+</beans>

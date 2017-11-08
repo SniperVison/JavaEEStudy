@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd ">
+
+	<!--将User对象交给Spring容器管理 -->
+
+	<!--创建方式一:空参构造创建 在User类中创建空参构造 -->
+	<bean name="user" class="com.vison.bean.User"  scope="singleton"></bean>
+
+
+	<!--创建方式二:静态工厂创建 调用UserFactory的createUser方法创建名为user2的对象，放入容器 -->
+	<bean name="user2" class="com.vison.create.UserFactory"
+		factory-method="createUser"></bean>
+
+
+
+	<!--创建方式三:实例工厂创建 调用UserFactory对象的createUser2方法创建名为user3的对象，放入容器 -->
+	<bean name="user3" factory-bean="userFactory" factory-method="createUser2"></bean>
+	<bean name="userFactory" class="com.vison.create.UserFactory"></bean>
+</beans>
