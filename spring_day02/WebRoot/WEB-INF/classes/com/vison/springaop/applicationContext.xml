@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd ">
+
+		<!-- Joinpoint(连接点):目标对象中，所有可以增强的方法
+		Pointcut(切入点):目标对象，已经增强的方法
+		Advice(通知/增强):增强的代码
+		Target(目标对象):被代理的对象
+		Weaving(织入):将通知应用到切入点的过程
+		Proxy(代理): 将通知织入到目标对象之后，形成代理对象
+		aspect(切面):切入点+通知
+		 -->
+		
+
+
+
+
+
+	<!--准备工作:导入aop(约束)命名空间 -->
+	<!--配置目标对象 -->
+	<bean name="userService" class="com.vison.service.UserServiceImpl"></bean>
+	<!--配置通知对象 -->
+	<bean name="myAdvice" class="com.vison.springaop.MyAdvice"></bean>
+	<!--配置将通知织入目标对象 -->
+	<aop:config>
+	<!--配置切入点  
+	
+	切入点的表达式
+	public void com.vison.service.UserServiceImpl.save()
+	void com.vison.service.UserServiceImpl.save()   public 可以省略
+	* com.vison.service.UserServiceImpl.save()      返回值类型可以用*代表任意，切入点的返回值类型不作要求
+	* com.vison.service.UserServiceImpl.*()         这个类下的任意方法，但是对参数有要求
+	* com.vison.service.UserServiceImpl.*(..)       这个下的任意方法，且方法 可以任意参数
+	
+	主要使用
+	* com.vison.service.*ServiceImpl.*(..)          以ServiceImpl为后缀的类
+	* com.vison.service..*ServiceImpl.*(..)         service包以及它的子包查找 以ServiceImpl为后缀的类
+	-->
+		<aop:pointcut expression="execution(* com.vison.service.UserServiceImpl.*())" id="pc" /><!--id这个值随便起 -->
+	    <aop:aspect ref="myAdvice"><!--指定MyAdvice类下的方法  -->
+		    <!--指定名为before方法作为前置通知  -->
+		    <aop:before method="before" pointcut-ref="pc"/>
+		    <!-- 指定名为afterReturning方法作为后置通知 -->
+		    <aop:after-returning method="afterReturning" pointcut-ref="pc"/>
+	        <!--指定名为around方法作为环绕通知 -->
+		    <aop:around method="around" pointcut-ref="pc"/>
+	        <!-- 指定名为afterException方法作为异常拦截通知-->
+	 	    <aop:after-throwing method="afterException" pointcut-ref="pc"/>
+		   	<!--  指定名为after方法作为后置通知(无论是否出现异常都会调用) -->
+		    <aop:after method="after" pointcut-ref="pc"/>
+	    </aop:aspect>
+	</aop:config>
+</beans>
