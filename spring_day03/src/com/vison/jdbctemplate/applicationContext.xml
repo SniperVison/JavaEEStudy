@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-4.3.xsd ">
+
+
+<!-- 方法一：这是使用UserDaoImpl的配置，手动创建JDBC模板 -->
+	<!--1、将连接池放入Spring容器 -->
+	<!-- <bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="jdbcUrl" value="jdbc:mysql:///springjdbctest"></property>
+		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+		<property name="user" value="root"></property>
+		<property name="password" value="root"></property>
+	</bean>
+ -->
+	<!--2、将JDBCTemplate放入Spring容器 -->
+	<!-- <bean name="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean> -->
+
+	<!--3、将UserDdao放入spring容器 -->
+	<!-- <bean name="userDao" class="com.vison.jdbctemplate.UserDaoImpl">
+		<property name="jt" ref="jdbcTemplate"></property>
+	</bean> -->
+	
+<!-- =============================================================================================================================  -->
+	
+	<!--方法二:这是UserDaoImpl2的配置，继承JdbcDaoSupport，直接从父类中获取JDBC模板，不需要手动创建  -->
+	<!--1、将连接池放入Spring容器 -->
+<!-- 	<bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="jdbcUrl" value="jdbc:mysql:///springjdbctest"></property>
+		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+		<property name="user" value="root"></property>
+		<property name="password" value="root"></property>
+	</bean>
+	 -->
+	
+	<!--2、将UserDdao放入spring容器 -->
+<!-- 	<bean name="userDao2" class="com.vison.jdbctemplate.UserDaoImpl2">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	 -->
+	
+<!-- =============================================================================================================================  -->
+	<!--方法三:在方法二的基础上，加入db.properties文件用于外部配置数据库连接  -->
+	
+	<!--0、指定spring读取db.properties配置  -->
+	<context:property-placeholder location="classpath:db.properties"/>
+	
+	<!--1、将连接池放入Spring容器 -->
+	<bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+		<property name="driverClass" value="${jdbc.driverClass}"></property>
+		<property name="user" value="${jdbc.user}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+	
+	
+	<!--2、将UserDdao放入spring容器 -->
+	<bean name="userDao2" class="com.vison.jdbctemplate.UserDaoImpl2">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	
+</beans>
