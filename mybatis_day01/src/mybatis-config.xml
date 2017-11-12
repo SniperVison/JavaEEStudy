@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--各个标签要按顺序编写  -->
+<configuration>
+	<!--配置外部db.properties【jdbc信息】文件 -->
+	<properties resource="db.properties"></properties>
+	
+	<!--类别名 -->
+	<typeAliases>
+	<!--默认支持别名【首字母大小写均可】:byte,short,int,long ,double,float,String,Integer,boolean,Date,decimal,bigdecimal,map  -->
+	<!--单独一个类起别名  -->
+		<typeAlias type="com.vison.mybatis.pojo.User" alias="User" />
+	   <!--自动扫描包以及其子包下所有类，头字母大小写都行  -->
+	<package name="com.vison.mybatis.pojo"/>
+	</typeAliases>
+
+    <!-- 和spring整合后 environments配置将废除-->
+    <environments default="development">
+        <environment id="development">
+        <!-- 使用jdbc事务管理，事务控制由MyBatis-->
+            <transactionManager type="JDBC" />
+        <!-- 数据库连接池，由MyBatis管理-->
+            <dataSource type="POOLED">
+            <property name="driver" value="${jdbc.driverClass}"/>
+            <property name="url" value="${jdbc.jdbcUrl}"/>
+            <property name="username" value="${jdbc.user}"/>
+            <property name="password" value="${jdbc.password}"/>
+                <!-- <property name="driver" value="com.mysql.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?characterEncoding=utf-8" />
+                <property name="username" value="root" />
+                <property name="password" value="root" /> -->
+            </dataSource>
+        </environment>
+    </environments>
+
+
+	<!--Mapper的位置 ，映射配置文件路径 -->
+	<mappers>
+		  <!--使用相对于类路径的资源,可以与UserMapper类不同名不同包，但遇到类比较多时，麻烦，可以使用 -->
+		<mapper resource="sqlmap/User.xml" /><!--现在在用这种  -->
+		
+		<!--使用mapper接口类路径,此种方法要求mapper接口名称和mapper映射文件名称相同，且放在同一个目录中。 -->
+<!-- 		<mapper class="com.vison.mybatis.mapper.UserMapper" />
+ -->		
+		<!--这里是使用绝对路径，即盘符位置之类的都要写出来，极其不推荐使用 -->
+		<!-- <mapper url=""/> -->
+		
+		<!--注册指定包下的所有mapper接口,此种方法要求mapper接口名称和mapper映射文件名称相同，且放在同一个目录中。使用频率最多 -->
+<!-- 		<package name="com.vison.mybatis.mapper" />
+ -->	</mappers>
+</configuration>
+
+
