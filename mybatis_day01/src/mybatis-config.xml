@@ -40,8 +40,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<!--Mapper的位置 ，映射配置文件路径 -->
 	<mappers>
 		  <!--使用相对于类路径的资源,可以与UserMapper类不同名不同包，但遇到类比较多时，麻烦，可以使用 -->
-		<mapper resource="sqlmap/User.xml" /><!--现在在用这种  -->
-		
+		<mapper resource="sqlmap/UserMapper.xml" /><!--现在在用这种  -->
+		<mapper resource= "sqlmap/OrderMapper.xml"/>
 		<!--使用mapper接口类路径,此种方法要求mapper接口名称和mapper映射文件名称相同，且放在同一个目录中。 -->
 <!-- 		<mapper class="com.vison.mybatis.mapper.UserMapper" />
  -->		
