@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql，还有一个很重要的作用，后面会讲 -->
+<!-- <mapper namespace="test"> 这是不使用动态代理开发的-->
+<mapper namespace="com.vison.mybatis.mapper.UserMapper"><!--使用动态代理，捆绑接口  -->
+
+			<!--#{}:代表占位符,使用这个符号时，里面的参数可以是任意
+			    ${}:字符串拼接,使用这个符号时,里面的参数只能是“value”
+			  -->
+			  
+			  <!--id:要与测试类中的参数一致
+			      parameterType:参数类型，
+			      resultType:返回值类型，
+			      keyProperty:键值
+			      order:sql语句执行顺序，值有before/after(默认)
+			       -->
+			       
+			  <!--sql语句切记要一行过，不要分行写，不然会报sql语法错误，不能运行  -->
+	<!--通过id查询一个用户 -->
+	<select id="findUserById" parameterType="Integer" resultType="User"><!--在mybatis-config.xml文件中使用了typeAliases属性，起别名  -->
+		select * from user where id=#{v}
+	</select>
+
+	<!-- 根据用户名称模糊查询用户列表 -->
+	<select id="findUserByUsername" parameterType="String"
+		resultType="com.vison.mybatis.pojo.User">
+		select * from user where username like '%${value}%'
+	</select>
+
+	<!--添加用户,无需返回 -->
+	<insert id="insertUser" parameterType="com.vison.mybatis.pojo.User">
+		<!--给添加的用户返回一个ID -->
+		<selectKey keyProperty="id" resultType="Integer" order="AFTER">
+			select LAST_INSERT_ID()  <!--sql语句：查询最后插入的ID  -->
+		</selectKey>
+		insert into user(username,birthday,address,sex)values(#{username},#{birthday},#{address},#{sex})
+	</insert>
+
+	<!--更新用户 -->
+	<update id="updateUserById" parameterType="com.vison.mybatis.pojo.User">
+		update user set username = #{username},sex = #{sex},birthday = #{birthday},address = #{address} where id=#{id}
+	</update>
+	
+	<!--删除用户  -->
+	<delete id="deleteUserById" parameterType="Integer">
+	   delete from user where id=#{id} 
+	</delete>
+	
+<!--===========================================================================================================================  -->
+	<!-- 输入参数之pojo包装类，根据用户名模糊查询 -->
+	<select id="findUserByQueryVo" parameterType="com.vison.mybatis.pojo.QueryVo"
+		resultType="com.vison.mybatis.pojo.User">
+		select * from user where username like "%"#{user.username}"%"
+	</select>
+
+	<!--输出参数之简单类型 -->
+	<select id="countUser" resultType="Integer">
+		select count(*) from user
+	</select>
+<!--===========================================================================================================================  -->
+						<!--动态sql  -->
+
+	<!-- 根据性别和名字查询用户 where 可以去掉第一个前and-->
+	          <!--动态sql之sql片段  -->
+	<sql id="selector">
+		select * from user
+	</sql>
+	
+	         <!--动态sql之if、where  -->
+	<select id="selectUserBySexAndUsername" parameterType="com.vison.mybatis.pojo.User"
+		resultType="com.vison.mybatis.pojo.User">
+		<include refid="selector" />
+		<where>
+			<if test="sex != null and sex != ''">
+				and sex = #{sex}
+			</if>
+			<if test="username != null and username != ''">
+				and username = #{username}
+			</if>
+		</where>
+	</select>
+
+              <!--动态sql之foreach  -->
+	<!-- 多个ID (1,2,3) -->
+	<select id="selectUserByIds" parameterType="com.vison.mybatis.pojo.QueryVo" resultType="com.vison.mybatis.pojo.User">
+		<include refid="selector" />
+		<where>
+			<foreach collection="list" item="id" separator="," open="id in ("
+				close=")">
+				#{id}
+			</foreach>
+		</where>
+	</select>
+	
+</mapper>
