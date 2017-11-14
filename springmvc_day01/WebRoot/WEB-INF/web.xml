@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>springmvc_day01</display-name>
+
+
+<!--注意:springmvc的servlet包在 spring-webmvc-4.3.12.RELEASE.jar，并不是在spring-web-4.3.12.RELEASE.jar -->
+	<!--前段控制器 -->
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- contextConfigLocation配置springmvc加载的配置文件(配置处理器映射器、适配器等等)，若不配置，默认找/WEB-INF/[servlet的名称(如springmvc)]-servlet.xml -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:springmvc.xml</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+	<!--1、在struts2中 “/*” 是不拦截jsp文件的 ,但是在springmvc中 “/*” 是真的拦截全部文件，建议不使用
+	    2、*.action , *.do 拦截以do action 结尾的请求     肯定能使用，比如在ERP
+	    3、"/"   拦截所有（不包括jsp）（包含.js/.png/.css）  强烈建议使用  前台  面向消费者       /对静态资源进行放行
+	    -->
+		<url-pattern>*.action</url-pattern>
+	</servlet-mapping>
+</web-app>
