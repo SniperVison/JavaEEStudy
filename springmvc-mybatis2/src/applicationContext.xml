@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-4.3.xsd 
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-4.3.xsd 
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-4.3.xsd ">
+	
+	
+	<!--获取db.properties文件参数 -->
+	<context:property-placeholder location="classpath:db.properties" />
+	<!--C3P0连接池 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driverClass}"></property>
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+		<property name="user" value="${jdbc.user}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+		<property name="maxPoolSize" value="${jdbc.maxPoolSize}"></property>
+	</bean>
+	
+	<!--MyBatis工厂 -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<!--核心配置文件的位置 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+	</bean>
+<!-- =======================================================================================================================  -->
+                        <!--三种实现方法推荐是第三种，但是三种都要会的，根据情况不同，选择不同的开发方式  -->
+	    <!--方法一:原始Dao开发 ,即使用Dao层和DaoImpl层去实现-->
+	<!-- <bean id="userDao" class="com.vison.mybatis.dao.impl.UserDaoImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryBean"></property>
+	</bean>
+ -->
+	<!--方法二:Mapper动态代理开发，使用MapperFactoryBean,但是这种写法面对多表时，比较繁杂-->
+<!-- 	<bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryBean"></property>
+		<property name="mapperInterface" value="com.vison.mybatis.mapper.UserMapper"></property>
+	</bean> -->
+
+	<!--方法三:终极版推荐，Mapper动态代理开发，扫描 ,id参数都不用写了，自动配置了，使用MapperScannerConfigurer -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!--指定基本包，让其自动扫描包下的类即可 -->
+		<property name="basePackage" value="com.vison.springmvc.dao"></property>
+	</bean>
+
+<!--注解事务  -->
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<property name="dataSource" ref="dataSource"></property>
+</bean>
+
+<!-- 开启注解 -->
+<tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+</beans>
