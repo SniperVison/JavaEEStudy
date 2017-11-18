@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>ssm</display-name>
+
+
+<!-- Druid 连接池 启用 Web 监控统计功能    start-->  
+<!--访问监控页面： http://ip:port/projectName/druid/index.html  -->
+  <filter>  
+     <filter-name>DruidWebStatFilter</filter-name>  
+     <filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>  
+     <init-param >  
+         <param-name> exclusions</param-name>  
+         <param-value> *. js ,*. gif ,*. jpg ,*. png ,*. css ,*. ico ,/ druid /*</param-value>  
+     </init-param>  
+  </filter >  
+  <filter-mapping >  
+     <filter-name>DruidWebStatFilter</filter-name>  
+     <url-pattern>/* </url-pattern>  
+  </filter-mapping>  
+  <servlet>  
+     <servlet-name>DruidStatView</servlet-name>  
+     <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>  
+  </servlet>  
+  <servlet-mapping>  
+     <servlet-name>DruidStatView</servlet-name>  
+     <url-pattern>/druid/*</url-pattern>  
+  </servlet-mapping>  
+  <!-- 连接池 启用 Web 监控统计功能    end--> 
+
+
+<!-- ==============================配置Spring ===================================-->
+<context-param>
+	<param-name>contextConfigLocation</param-name>
+	<param-value>classpath:applicationContext.xml</param-value>
+</context-param>
+
+	<!--配置监听器加载 spring-->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!--配置filter过滤器,处理POST提交乱码问题 -->
+	<filter>
+		<filter-name>encoding</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encoding</filter-name>
+		<!--过滤所有请求  -->
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+
+
+<!-- ==============================配置SpringMVC ===================================-->
+
+	<!--前段控制器 -->
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- contextConfigLocation配置springmvc加载的配置文件(配置处理器映射器、适配器等等)，若不配置，默认找/WEB-INF/[servlet的名称(如springmvc)]-servlet.xml -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:springmvc.xml</param-value>
+		</init-param>
+		
+		<!--配置springmvc什么时候启动，参数必须为整数  -->
+		<!--如果为0或者大于0，则Springmvc随着容器启动而启动  -->
+		<!--如果小于0，则在第一次请求进来的时候启动  -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<!--所有请求都进入springMVC  -->
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+
+
+
+</web-app>
